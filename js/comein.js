@@ -1,0 +1,91 @@
+$(function(){
+	var type = getQueryString("type");
+	if (type == "registe") {
+		$(".submit-btn").val("Rua");
+		$(".submit-btn").click(function(){
+			registe();
+		});
+	} else {
+		$(".submit-btn").val("Login");
+		$(".submit-btn").click(function(){
+			login();
+		});
+	}
+});
+
+function getQueryString(name) {
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+    var r = window.location.search.substr(1).match(reg);
+    if (r != null)
+        return unescape(r[2]);
+    return null;
+}
+
+function registe() {
+	if (!validata()) return;
+	$.ajax({
+		type:"POST",
+		url:siteURL+"/articleInfo/registe",
+		async:true,
+		data:$("form").serialize(),
+		success:function(data){
+			var res = data.split("&");
+			var stat = res[0];
+			var uuid = res[1];
+			if (stat == "success") {
+				setCookie("blogid", uuid, -1);
+				setCookie("blogid", uuid, 1);
+				var coo = getCookie("blogid");
+				alert("success");
+				$(location).attr('href', 'index.html');
+			} else {
+				alert(data);
+			}
+		}
+	});
+}
+
+function login() {
+	if (!validata()) return;
+	$.ajax({
+		type:"POST",
+		url:siteURL+"/articleInfo/login",
+		async:true,
+		data:$("form").serialize(),
+		success:function(data){
+			var res = data.split("&");
+			var stat = res[0];
+			var uuid = res[1];
+			if (stat == "success") {
+				setCookie("blogid", uuid, -1);
+				setCookie("blogid", uuid, 1);
+				var coo = getCookie("blogid");
+				$(location).attr('href', 'index.html');
+			} else {
+				alert(data);
+			}
+		}
+	});
+}
+
+function validata() {
+	if ($("form :text").val().length == 0 || $("form :password").val().length == 0) {
+		return false;
+	}
+	return true;
+}
+
+function getCookie(name){
+	var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+	if(arr=document.cookie.match(reg))
+	return unescape(arr[2]);
+	else
+	return null;
+}
+
+function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires="+ d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+} 
