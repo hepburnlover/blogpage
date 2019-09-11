@@ -15,7 +15,7 @@ document.write('                            <li class="nav-item">');
 document.write('                                <a class="nav-link" href="about.html">About Me </a>');
 document.write('                            </li>');
 document.write('                            <li class="nav-item">');
-document.write('                                <a class="nav-link" href="featured.html">我的博客</a>');
+document.write('                                <a class="nav-link" href="myblog.html">我的博客</a>');
 document.write('                            </li>');
 document.write('                            <li class="nav-item">');
 document.write('                                <a class="nav-link" href="editblog.html">写博客</a>');
