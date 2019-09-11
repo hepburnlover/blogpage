@@ -68,7 +68,7 @@ function loadMore() {
 					var article = data[i];
 					writePostDiv(article);
 				}
-				$ (".button-sec").attr("offset", parseInt(offset) + data.length + '');
+				$ (".load-more").attr("offset", parseInt(offset) + data.length + '');
 			},
 			error: function(e){
 				alert("load fail");
