@@ -37,8 +37,10 @@ $(function() {
             if (data.catalog.indexOf('4') != -1) {
             	$("#catalog4").attr("checked", true);
             }
+            $("#author_id").attr("value", data.author_id);
 		}
 	});
+	$("#articleId").attr("value", id);
 });
 
 function submit() {
@@ -51,14 +53,11 @@ function submit() {
 	var mydata = $("form").serialize();
 	$.ajax({
 		type:"POST",
-		url:siteURL+"/articleInfo/editblog",
+		url:siteURL+"/articleInfo/update",
 		async:false,
 		data:mydata,
 		success:function(data){
-			alert(data.status);
-			if (data.status == "success") {
-				window.location.href="blog-inner.html?id="+data.id;
-			}
+			alert(data);
 		},
 		fail: function(e) {
 			alert("请求失败");
