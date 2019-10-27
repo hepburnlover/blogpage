@@ -1,11 +1,16 @@
-var para = getQueryString("para");
-var offset = getQueryString("offset");
-var rows = getQueryString("rows");
+var url = window.location.href;
+var URL_decode = decodeURI(decodeURI(url));
+var para = GetQueryString_new("para");
+var offset = GetQueryString_new("offset");
+var rows = GetQueryString_new("rows");
 $(function(){
 	var blogid = getCookie("blogid");
 	var post_data = {"offset":offset,"rows":rows,"para":para};
 	$(".load-more").click(function () {
 		loadMore();
+	});
+	$(".fa-search").click(function () {
+		search();
 	});
 	$.ajax({url: siteURL + "/articleInfo/search",
 			async: false,
@@ -113,3 +118,19 @@ function writePostDiv(article) {
 	'</div>';
     $ (".button-sec").prepend(textToPrepend);
 }
+
+function search() {
+	var para = $(".search-box:first").val();
+	$(location).attr('href', 'search.html?para=' + para + "&offset=0&rows=10");
+}
+
+//自定义获取URL中某一参数的封装函数
+    function GetQueryString_new(name){
+         var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+         var r = URL_decode.substr(URL_decode.indexOf("?")).substr(1).match(reg);//注意这里使用的是解码之后的URL_decode
+         if(r!=null){
+             return  unescape(r[2]);//2017年12月11日--注意：这里有个解密的操作。
+         }else{
+             return null;
+         }
+    }
