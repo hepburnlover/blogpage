@@ -4,6 +4,9 @@ $(function(){
 	$(".load-more").click(function () {
 		loadMore();
 	});
+	$(".fa-search").click(function () {
+		search();
+	});
 	$.ajax({url: siteURL + "/articleInfo/index",
 			async: false,
 			type: "POST",
@@ -109,4 +112,9 @@ function writePostDiv(article) {
 	'</div>' + 
 	'</div>';
     $ (".button-sec").prepend(textToPrepend);
+}
+
+function search() {
+	var para = $(".search-box:first").val();
+	$(location).attr('href', 'search.html?para=' + para + "&offset=0&rows=10");
 }
