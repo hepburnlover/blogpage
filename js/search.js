@@ -29,7 +29,7 @@ $(function(){
 					var temp = $(this);
 					temp.children("h2").html(temp_data.title);
 					temp.children("h5").html(temp_data.description);
-					temp.children("a").attr("href", "blog-inner.html?id=" + temp_data.article_id);
+					temp.children("a").attr("href", "blog-inner.html?id=" + temp_data.id);
 					var ad = temp.find("ol li .admin");
 					ad.html(temp_data.username);
 					var catalogDiv = temp.find("ol li").eq(2);
@@ -113,7 +113,7 @@ function writePostDiv(article) {
 	'<li class="breadcrumb-item">(23) Comments</li>' + 
 	'</ol>' + 
 	'<h5>' + article.description + '</h5>' + 
-	'<a href="blog-inner.html?id=' + article.article_id + '" class="continue-read">Continue Reading</a>' + 
+	'<a href="blog-inner.html?id=' + article.id + '" class="continue-read">Continue Reading</a>' + 
 	'</div>' + 
 	'</div>';
     $ (".button-sec").prepend(textToPrepend);
