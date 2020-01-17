@@ -4,7 +4,6 @@ var para = GetQueryString_new("para");
 var offset = GetQueryString_new("offset");
 var rows = GetQueryString_new("rows");
 $(function(){
-	var blogid = getCookie("blogid");
 	var post_data = {"offset":offset,"rows":rows,"para":para};
 	$(".load-more").click(function () {
 		loadMore();

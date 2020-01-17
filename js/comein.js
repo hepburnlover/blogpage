@@ -25,21 +25,20 @@ function registe() {
 	if (!validata()) return;
 	$.ajax({
 		type:"POST",
-		url:siteURL+"/articleInfo/registe",
+		url:siteURL+"/entry/registe",
 		async:true,
 		data:$("form").serialize(),
 		success:function(data){
-			var res = data.split("&");
-			var stat = res[0];
-			var uuid = res[1];
-			if (stat == "success") {
-				setCookie("blogid", uuid, -1);
-				setCookie("blogid", uuid, 1);
-				var coo = getCookie("blogid");
+			var result = JSON.parse(data);
+			if (result.status == "S") {
+				setCookie("user_cache_id", result.uuid, -1);
+				setCookie("user_cache_id", result.uuid, 1);
+				setCookie("username", result.username, -1);
+				setCookie("username", result.username, 1);
 				alert("success");
 				$(location).attr('href', 'index.html');
 			} else {
-				alert(data);
+				alert(result.msg);
 			}
 		}
 	});
@@ -49,20 +48,19 @@ function login() {
 	if (!validata()) return;
 	$.ajax({
 		type:"POST",
-		url:siteURL+"/articleInfo/login",
+		url:siteURL+"/entry/login",
 		async:true,
 		data:$("form").serialize(),
 		success:function(data){
-			var res = data.split("&");
-			var stat = res[0];
-			var uuid = res[1];
-			if (stat == "success") {
-				setCookie("blogid", uuid, -1);
-				setCookie("blogid", uuid, 1);
-				var coo = getCookie("blogid");
+			var result = JSON.parse(data);
+			if (result.status == "S") {
+				setCookie("user_cache_id", result.uuid, -1);
+				setCookie("user_cache_id", result.uuid, 1);
+				setCookie("username", result.username, -1);
+				setCookie("username", result.username, 1);
 				$(location).attr('href', 'index.html');
 			} else {
-				alert(data);
+				alert(result.msg);
 			}
 		}
 	});

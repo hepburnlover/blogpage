@@ -44,12 +44,12 @@ $(function() {
 });
 
 function submit() {
-	var blogid = getCookie("blogid");
-	if (blogid == null || blogid.length < 1) {
+	var user_cache_id = getCookie("user_cache_id");
+	if (user_cache_id == null || user_cache_id.length < 1) {
 		alert("please login");
 		return;
 	}
-	$("#blogid").attr("value", blogid);
+	$("#user_cache_id").attr("value", user_cache_id);
 	var mydata = $("form").serialize();
 	$.ajax({
 		type:"POST",

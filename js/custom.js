@@ -18,8 +18,8 @@ function setCookie(cname, cvalue, exdays) {
 } 
 
 function validLogin() {
-	var blogid = getCookie("blogid");
-	if (blogid == null || blogid.length < 1) {
+	var user_cache_id = getCookie("user_cache_id");
+	if (user_cache_id == null || user_cache_id.length < 1) {
 		alert("please login");
 		$(location).attr('href', 'comein.html');
 	}

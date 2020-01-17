@@ -1,7 +1,7 @@
 $(function(){
 	validLogin();
-	var blogid = getCookie("blogid");
-	var post_data = {"offset":0,"rows":10,"blogid":blogid};
+	var user_cache_id = getCookie("user_cache_id");
+	var post_data = {"offset":0,"rows":10,"user_cache_id":user_cache_id};
 	$(".load-more").click(function () {
 		loadMore();
 	});
@@ -60,7 +60,7 @@ function loadMore() {
 	$.ajax({url: siteURL + "/articleInfo/myblog",
 			async: false,
 			type: "POST",
-			data: {"offset":offset,"rows":10, "blogid":getCookie("blogid")},
+			data: {"offset":offset,"rows":10, "user_cache_id":getCookie("user_cache_id")},
 			dataType: "json",
 			success: function(data){
 				if (data.length == 0) {

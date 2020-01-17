@@ -1,6 +1,5 @@
 $(function(){
-	var blogid = getCookie("blogid");
-	var post_data = (blogid == null ? {"offset":0,"rows":10} : {"offset":0,"rows":10,"blogid":blogid});
+	var param = {"offset":0,"rows":10};
 	$(".load-more").click(function () {
 		loadMore();
 	});
@@ -10,7 +9,7 @@ $(function(){
 	$.ajax({url: siteURL + "/articleInfo/index",
 			async: false,
 			type: "POST",
-			data: post_data,
+			data: param,
 			dataType: "json",
 			success: function(data){
 				var postDivs = $(".big-post");
